@@ -23,7 +23,7 @@ module.exports = function (grunt) {
     var EXISTS_RE = /^Entry already exists/
 
     jam.publish({
-      dir: path.resolve(options.dir),
+      dir: path.resolve(options.dir || '.'),
       repo: options.repo
     }, function (error) {
 
