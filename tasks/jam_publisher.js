@@ -19,19 +19,24 @@ module.exports = function (grunt) {
   grunt.registerTask('jam_publisher', 'Task for publishing jam packages', function () {
 
     var options = this.options();
-
-    global.console.log('dir', path.resolve('.'));
-    global.console.log('repo', options.repo);
+    var done = this.async();
+    var EXISTS_RE = /^Entry already exists/
 
     jam.publish({
       dir: path.resolve('.'),
       repo: options.repo
-    }, function () {
-        global.console.log('publishing callback');
-        global.console.dir(argumets);
-    })
+    }, function (error) {
 
-    global.console.log('jam publishing end');
+      grunt.log.debug(error);
+
+      if (error && !EXISTS_RE.test(error)) {
+        grunt.log.error('Something wrong with publishing');
+      } else {
+        grunt.log.ok('Success publishing.' + (EXISTS_RE.test(error) ? ' Don\'t worry about error in terminal' : ''));
+      }
+
+      done();
+    });
 
   });
 };
