@@ -16,7 +16,7 @@ module.exports = function (grunt) {
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
-  grunt.registerTask('jam_publisher', 'Task for publishing jam packages', function () {
+  grunt.registerTask('jam-publisher', 'Task for publishing jam packages', function () {
 
     var options = this.options();
     var done = this.async();
@@ -24,7 +24,8 @@ module.exports = function (grunt) {
 
     jam.publish({
       dir: path.resolve(options.dir || '.'),
-      repo: options.repo
+      repo: options.repo,
+      level: options.level || null
     }, function (error) {
 
       grunt.log.debug(error);
