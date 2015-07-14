@@ -27,5 +27,9 @@
   },
   "scripts": {
     "test": "grunt test"
+  },
+  "dependencies": {
+    "jamjs": "^0.5.1-rc.0",
+    "nexpect": "^0.5.0"
   }
 }

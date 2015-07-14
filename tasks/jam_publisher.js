@@ -8,44 +8,30 @@
 
 'use strict';
 
+var path = require('path');
+var jam = require('jamjs');
+
 module.exports = function (grunt) {
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
-  grunt.registerMultiTask('jam_publisher', 'Task for publishing jam packages', function () {
+  grunt.registerTask('jam_publisher', 'Task for publishing jam packages', function () {
 
-    // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      punctuation: '.',
-      separator: ', '
-    });
+    var options = this.options();
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function (file) {
-      // Concat specified files.
-      var src = file.src.filter(function (filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function (filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
+    global.console.log('dir', path.resolve('.'));
+    global.console.log('repo', options.repo);
 
-      // Handle options.
-      src += options.punctuation;
+    jam.publish({
+      dir: path.resolve('.'),
+      repo: options.repo
+    }, function () {
+        global.console.log('publishing callback');
+        global.console.dir(argumets);
+    })
 
-      // Write the destination file.
-      grunt.file.write(file.dest, src);
+    global.console.log('jam publishing end');
 
-      // Print a success message.
-      grunt.log.writeln('File "' + file.dest + '" created.');
-    });
   });
-
 };
