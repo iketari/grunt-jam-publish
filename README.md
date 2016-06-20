@@ -26,7 +26,10 @@ In your project's Gruntfile, add a section named `jam_publisher` to the data obj
 grunt.initConfig({
   jam_publisher: {
     options: {
-      // Task-specific options go here.
+        repo: 'URL string', // URL with auth data to NPM like repo for JAM packages,
+        level: 'error', // log level,
+        cfg: require('./package.json'), // package.json of your project
+        remote: 'origin' // name of a remote which used for finding tags with version names
     }
   },
 })
