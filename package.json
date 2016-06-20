@@ -1,6 +1,6 @@
 {
   "name": "grunt-jam-publisher",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Task for publishing jam packages",
   "homepage": "https://github.com/iketari/grunt-jam-publish",
   "repository": "https://github.com/iketari/grunt-jam-publish",
@@ -29,6 +29,7 @@
     "test": "grunt test"
   },
   "dependencies": {
+    "git-promise": "0.3.0",
     "jamjs": "^0.5.1-rc.2"
   }
 }
