@@ -26,7 +26,7 @@ module.exports = function (grunt) {
       return new Promise((resolve, reject) => {
           git(gitCommang).then(data => {
               if (!data) {
-                  let error = `Can't find git ref`;
+                  let error = `Can't find git ref ${tag} in ${remote}`;
                   grunt.log.error(error);
                   return reject(data);
               }
